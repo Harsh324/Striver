@@ -105,6 +105,36 @@ vector<int> iter_preorder(Node* Tree)
 }
 
 
+vector<int> iter_postorder1(Node* Tree)
+{
+    vector<int> Res;
+    if(NULL == Tree)
+        return Res;
+
+    stack<Node*> St1, St2;
+    St1.push(Tree);
+
+    while(St1.empty() != true)
+    {
+        Tree = St1.top();
+        St1.pop();
+        St2.push(Tree);
+
+        if(Tree->left != NULL)
+            St1.push(Tree->left);
+        if(Tree->right != NULL)
+            St1.push(Tree->right);
+    }
+
+    while(St2.empty())
+    {
+        Res.push_back(St2.top()->data);
+        St2.pop();
+    }
+    return Res;
+}
+
+
 
 vector<int> iter_ineorder(Node* Tree)
 {

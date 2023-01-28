@@ -1,0 +1,11 @@
+** Iterative postorder Traversal of Binary Tree
+
+    ** Order is (Left, Right, Root)
+
+    ** Stack (LIFO) Data structure is used 
+
+    ** Implementation based on One Stack Data Structure
+
+
+    Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
+    Auxillary space : O(2N), Where N is number of nodes in the Binary Tree
