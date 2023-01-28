@@ -1,0 +1,39 @@
+** Binary tree Traversals
+     
+    ** DFS (Depth first search)
+                            1
+                    2               3
+                4       5       6       7
+                                            
+
+        ** Inorder Traversal(Left, Root, Right)
+
+        Order of search : 4 2 5 1 6 3 7
+
+        ** Preorder Traversal(Root, Left, Right)
+
+        Order of search : 1 2 4 5 3 6 7
+
+        ** Postorder Traversal(Left, Right, Root)
+
+        Order of search : 4 5 2 6 7 3 1
+
+
+    
+    ** BFS (Breadth frist search)
+
+                            1
+                    2               3
+                4       5       6       7
+
+        Order of search : 1 2 3 4 5 6 7
+
+        ** Traversal is level wise
+
+
+                                            
+
+
+
+
+

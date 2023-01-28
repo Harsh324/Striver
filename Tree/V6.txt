@@ -1,0 +1,18 @@
+** Preorder Traversal of Binary Tree
+
+    ** Order if (Root, Left, Right)
+
+    ** Implemenatation
+
+        void Preorder(Node* Tree)
+        {
+            if(NULL == Tree)
+                return;
+
+            cout << Tree->data <<" ";
+            Preorder(Tree->left);
+            Preorder(Tree->right);
+        }
+
+        Time Complextiy : O(N) , N is number of Nodes in the Binary Tree
+        Auxillary pace : O(N) , N is number of Nodes in the Binary Tree

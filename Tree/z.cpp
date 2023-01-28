@@ -16,6 +16,16 @@ struct Node
     
 };
 
+void Preorder(Node* Tree)
+{
+    if(NULL == Tree)
+        return;
+
+    cout << Tree->data <<" ";
+    Preorder(Tree->left);
+    Preorder(Tree->right);
+}
+
 
 int main()
 {

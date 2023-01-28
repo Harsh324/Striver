@@ -1,0 +1,22 @@
+** Binary tree representation 
+
+    ** Typical Node of a bianry tree is Represented by Left,
+        Right pointer and a data value;
+
+    ** Implemenation
+
+        struct Node
+        {
+            int data;
+            struct Node* left;
+            struct Node* right;
+
+            Node(int Val)
+            {
+                data = Val;
+                left = NULL;
+                right = NULL;
+            }
+        };
+
+
