@@ -27,6 +27,27 @@ void Preorder(Node* Tree)
 }
 
 
+void Inorder(Node* Tree)
+{
+    if(NULL == Tree)
+        return;
+    
+    Inorder(Tree->left);
+    cout << Tree->data <<" ";
+    Inorder(Tree->right);
+}
+
+void Postorder(Node* Tree)
+{
+    if(NULL == Tree)
+        return;
+    
+    Inorder(Tree->left);
+    Inorder(Tree->right);
+    cout << Tree->data <<" ";
+}
+
+
 int main()
 {
     struct Node* Root = new Node(1);
