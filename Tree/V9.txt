@@ -1,0 +1,41 @@
+** Level Order Traversal of Binary Tree
+
+    ** this is Breadth First Search (BFS)
+
+    ** Queue data structure is required
+
+    ** Implementation
+
+        ** The Implementation is based on Queue data structure,
+            we push the left child and right child in the queue and so on.
+
+        vector<vector<int>> Level_order(Node* Tree)
+        {
+            vector<vector<int>> Res;
+            if(NULL == Tree)
+                return Res;
+            
+            queue<Node*> Q;
+            Q.push(Tree);
+
+            while(Q.empty() != true)
+            {
+                int Sz = Q.size();
+                vector<int> V;
+                for(int i = 0; i < Sz; i++)
+                {
+                    Node* node = Q.front();
+                    Q.pop();
+                    if(Tree->left != NULL)
+                        Q.push(Tree->left);
+                    if(Tree->right != NULL)
+                        Q.push(Tree->right);
+                    
+                    V.push_back(node->data);
+                }
+            }
+            return Res;
+        }
+
+        Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
+        Auxillary space : O(N), Where N is number of nodes in the Binary Tree

@@ -1,0 +1,38 @@
+** Iterative inorder Traversal of Binary Tree
+
+    ** Order is (Left, Root, Right)
+
+    ** Stack (LIFO) Data structure is used 
+
+    ** Implementation based on Stack Data Structure
+
+        vector<int> iter_preorder(Node* Tree)
+        {
+            vector<int> Res;
+            stack<Node*> St;
+
+            
+            Node* node = Tree;
+
+            while(true)
+            {
+                if(NULL == node)
+                {
+                    St.push(node);
+                    node = node->left;
+                }
+                else{
+                    if(St.empty() == true)
+                        break;
+                    node = St.top();
+                    St.pop();
+                    Res.push_back(node->data);
+                    node = node->right;
+                }
+            }
+            return Res;
+        }
+
+        Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
+        Auxillary space : O(N), Where N is number of nodes in the Binary Tree
+
