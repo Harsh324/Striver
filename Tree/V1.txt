@@ -1,0 +1,23 @@
+
+
+    ** Full Tree
+
+        ** Any node can have 0 or 2 children only
+
+    ** Complete Tree
+    
+        ** All levels filled except last level, last leve if filled then all must be leftwise
+
+    ** Prefect Tree
+
+        ** All leaf nodes at same level only
+
+    ** Balanced Tree
+
+        Height of tree can be at max Log(N), where N is number of Nodes in the Binary tree.
+
+    ** Degenerate tree
+
+        ** Skew tree, means every nodes has single child only
+
+        
