@@ -1,0 +1,18 @@
+** Check if Two trees are identical or Not 
+
+    ** Identical means same tree, so traversal of the trees need to be same
+
+    ** Implementation
+
+        bool isSameTree(Node* Tree1, Node* Tree2)
+        {
+            if(NULL == Tree1 || NULL == Tree2)
+                return (Tree1 == Tree2);
+
+            return (Tree1->data == Tree2->data)
+                    && isSameTree(Tree1->left, Tree2->left)
+                    && isSameTree(Tree1->right, Tree2->right);
+        }
+
+        Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
+        Auxillary space : O(N), Where N is number of nodes in the Binary Tree

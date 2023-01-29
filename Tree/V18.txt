@@ -1,0 +1,27 @@
+** Maximum path sum in Binary Tree
+
+    ** 
+
+    ** Implementation 
+
+        int Height(Node* Tree, int* Maxx)
+        {
+            if(NULL == Tree)
+                return 0;
+
+            int Left = Height(Tree->left);
+            int Right = Height(Tree->right);
+            Maxx = max(Maxx, Left + Right + Tree->data);
+
+            return Tree->data + max(Left, Right);
+        }
+
+        int Maxx_Path_Sum(Node* Tree)
+        {
+            int Maxx = INT_MIN;
+            Height(Tree, Maxx);
+            return Maxx;
+        }
+
+        Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
+        Auxillary space : O(N), Where N is number of nodes in the Binary Tree

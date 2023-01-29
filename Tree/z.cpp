@@ -249,29 +249,41 @@ int Max_Depth(Node* Tree)
     return 1 + max(Max_Depth(Tree->left), Max_Depth(Tree->right));
 }
 
-int Height(Node* Tree)
+
+vector<vector<int>> Zig_Zag_level(Node* Tree)
 {
+    vector<vector<int>> Res;
     if(NULL == Tree)
-        return 0;
+        return Res;
 
-    int Left = Height(Tree->left);
-    if(Left == -1)
-        return -1;
-    int Right = Height(Tree->right);
-    if(Right = -1)
-        return -1;
-    if(abs(Left - Right) > 1)
-        return -1;
+    queue<Node*> Q;
+    Q.push(Tree);
 
-    return 1 + max(Left, Right);
+    bool leftToRight = true;
+
+    while(Q.empty() != true)
+    {
+        int Sz = Q.size();
+        vector<int> V(Sz);
+        for(int i = 0; i < Sz; i++)
+        {
+            Node* node = Q.front();
+            Q.pop();
+            int Ind = (leftToRight) ? i : (Sz - 1 - i);
+
+            V[Ind] = node->data;
+
+            if(node->left)
+                Q.push(node->left);
+            if(node->right)
+                Q.push(node->right);
+
+        }
+        leftToRight = !leftToRight;
+        Res.push_back(V);
+    }
+    return Res;
 }
-
-bool Check_balanced(Node* Tree)
-{
-    return Height(Tree) != -1;
-}
-
-
 
 int main()
 {

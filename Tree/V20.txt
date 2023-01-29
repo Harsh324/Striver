@@ -1,0 +1,42 @@
+** Zig-Zag or Spiral Traversal of Binary Tree
+
+    ** Implementation
+
+        vector<vector<int>> Zig_Zag_level(Node* Tree)
+        {
+            vector<vector<int>> Res;
+            if(NULL == Tree)
+                return Res;
+
+            queue<Node*> Q;
+            Q.push(Tree);
+
+            bool leftToRight = true;
+
+            while(Q.empty() != true)
+            {
+                int Sz = Q.size();
+                vector<int> V(Sz);
+                for(int i = 0; i < Sz; i++)
+                {
+                    Node* node = Q.front();
+                    Q.pop();
+                    int Ind = (leftToRight) ? i : (Sz - 1 - i);
+
+                    V[Ind] = node->data;
+
+                    if(node->left)
+                        Q.push(node->left);
+                    if(node->right)
+                        Q.push(node->right);
+
+                }
+                leftToRight = !leftToRight;
+                Res.push_back(V);
+            }
+            return Res;
+        }
+
+
+        Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
+        Auxillary space : O(N), Where N is number of nodes in the Binary Tree
