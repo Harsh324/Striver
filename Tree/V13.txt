@@ -6,6 +6,46 @@
 
     ** Implementation based on One Stack Data Structure
 
+        vector<int> iter_postorder2(Node* Tree)
+        {
+            vector<int> Res;
+            if(NULL == Tree)
+                return Res;
 
-    Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
-    Auxillary space : O(2N), Where N is number of nodes in the Binary Tree
+            stack<Node*> St;
+            Node* Curr = Tree;
+            St.push(Tree);
+
+            while(Curr != NULL || St.empty() != true)
+            {
+                if(Curr != NULL)
+                {
+                    St.push(Curr);
+                    Curr = Curr->left;
+                }
+                else
+                {
+                    Node* Temp = St.top()->right;
+                    if(Temp == NULL)
+                    {
+                        Temp = St.top();
+                        St.pop();
+                        Res.push_back(Temp->data);
+
+                        while(!St.empty() && Temp == St.top()->right)
+                        {
+                            Temp = St.top();
+                            St.pop();
+                            Res.push_back(Temp->data);
+                        }
+                    }
+                    else
+                        Curr = Temp;
+                }
+            }
+            return Res;
+        }
+
+        Time Complextiy : O(2N), Where N is number of nodes in the Binary Tree
+        Auxillary space : O(2N), Where N is number of nodes in the Binary Tree
+ 

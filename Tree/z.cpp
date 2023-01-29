@@ -136,6 +136,48 @@ vector<int> iter_postorder1(Node* Tree)
 
 
 
+vector<int> iter_postorder2(Node* Tree)
+{
+    vector<int> Res;
+    if(NULL == Tree)
+        return Res;
+
+    stack<Node*> St;
+    Node* Curr = Tree;
+    St.push(Tree);
+
+    while(Curr != NULL || St.empty() != true)
+    {
+        if(Curr != NULL)
+        {
+            St.push(Curr);
+            Curr = Curr->left;
+        }
+        else
+        {
+            Node* Temp = St.top()->right;
+            if(Temp == NULL)
+            {
+                Temp = St.top();
+                St.pop();
+                Res.push_back(Temp->data);
+
+                while(!St.empty() && Temp == St.top()->right)
+                {
+                    Temp = St.top();
+                    St.pop();
+                    Res.push_back(Temp->data);
+                }
+            }
+            else
+                Curr = Temp;
+        }
+    }
+    return Res;
+}
+
+
+
 vector<int> iter_ineorder(Node* Tree)
 {
     vector<int> Res;
@@ -159,6 +201,52 @@ vector<int> iter_ineorder(Node* Tree)
             St.push(Tree->left);
     }
     return Res;
+}
+
+
+vector<int> PrePostIn(Node* Tree)
+{
+    stack<pair<Node*, int>> St;
+    St.push({Tree, 1});
+    vector<int> pre, in, post ;
+    if(NULL == Tree)
+        return;
+
+    while(St.empty() != true)
+    {
+        auto It = St.top();
+        St.pop();
+
+        if(It.second == 1)
+        {
+            pre.push_back(It.first->data);
+            It.second++;
+            St.push(It);
+
+            if(It.first->left != NULL)
+                St.push({It.first->left, 1});
+        }
+        else if(It.second == 2)
+        {
+            in.push_back(It.first->data);
+            It.second++;
+            St.push(It);
+
+            if(It.first->right != NULL)
+                St.push({It.first->right, 1});
+        }
+        else
+        {
+            post.push_back(It.first->data);
+        }
+    }
+}
+
+int Max_Depth(Node* Tree)
+{
+    if(NULL == Tree)
+        return 0;
+    return 1 + max(Max_Depth(Tree->left), Max_Depth(Tree->right));
 }
 
 
