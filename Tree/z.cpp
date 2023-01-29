@@ -249,6 +249,28 @@ int Max_Depth(Node* Tree)
     return 1 + max(Max_Depth(Tree->left), Max_Depth(Tree->right));
 }
 
+int Height(Node* Tree)
+{
+    if(NULL == Tree)
+        return 0;
+
+    int Left = Height(Tree->left);
+    if(Left == -1)
+        return -1;
+    int Right = Height(Tree->right);
+    if(Right = -1)
+        return -1;
+    if(abs(Left - Right) > 1)
+        return -1;
+
+    return 1 + max(Left, Right);
+}
+
+bool Check_balanced(Node* Tree)
+{
+    return Height(Tree) != -1;
+}
+
 
 
 int main()
