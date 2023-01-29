@@ -1,9 +1,32 @@
 ** Check for balanced binary Tree
 
-    ** 
+    ** Balanced Binary Tree - For every node difference of height of the,
+       left subtree and right subtree should be less than or equal to 1.
 
     ** Implementation
 
+        int Height(Node* Tree)
+        {
+            if(NULL == Tree)
+                return 0;
 
-        Time Complextiy : O(3N), Where N is number of nodes in the Binary Tree
-        Auxillary space : O(3N), Where N is number of nodes in the Binary Tree
+            int Left = Height(Tree->left);
+            if(Left == -1)
+                return -1;
+            int Right = Height(Tree->right);
+            if(Right = -1)
+                return -1;
+            if(abs(Left - Right) > 1)
+                return -1;
+
+            return 1 + max(Left, Right);
+        }
+
+        bool Check_balanced(Node* Tree)
+        {
+            return Height(Tree) != -1;
+        }
+
+
+        Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
+        Auxillary space : O(N), Where N is number of nodes in the Binary Tree
