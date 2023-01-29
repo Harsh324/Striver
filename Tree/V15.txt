@@ -1,0 +1,15 @@
+** Maximum Depth in Binary Tree
+
+    ** This can be done using recursive approach and Level order traversal
+
+    ** Implementation
+
+        int Max_Depth(Node* Tree)
+        {
+            if(NULL == Tree)
+                return 0;
+            return 1 + max(Max_Depth(Tree->left), Max_Depth(Tree->right));
+        }
+
+        Time Complextiy : O(N), Where N is number of nodes in the Binary Tree
+        Auxillary space : O(N), Where N is number of nodes in the Binary Tree
