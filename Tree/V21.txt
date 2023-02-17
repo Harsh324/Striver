@@ -1,0 +1,77 @@
+** Binary Traversal of a Tree
+
+    ** Here discussing the anticlockwise approach
+
+    ** Start with Left boundry excluding leaf nodes,
+        then go with the leaf nodes, and finally
+        Right boundry in reverse direction, excluding leaf nodes.
+
+    ** So maintain a data structure, traverse left add nodes to data structure,
+        untill you get leaf, as you get the leaf, start inorder traversal and add
+        again to the data structure.
+
+
+    void addLeft(Node* Root, vector<int> &Res)
+    {
+        Node* Curr = Root->left;
+        while(Curr)
+        {
+            if(!isLeaf(Curr))
+                Res.push_back(Curr->data);
+            if(Curr->left)
+                Curr = Curr->left;
+            else
+                Curr = Curr->right;
+
+        }
+    }
+
+
+    void addRight(Node* Root, vector<int> &Res)
+    {
+        Node* Curr = Root->right;
+        vector<int> Temp;
+        while(Curr)
+        {
+            if(!isLeaf(Curr))
+                Temp.push_back(Curr->data);
+            if(Curr->right)
+                Curr = Curr->right;
+            else
+                Curr = Curr->left;
+        }
+        for(int i = 0; i < Temp.size(); i++)
+            Res.push_back(Temp[i]);
+    }
+
+    void addLeaf(Node* Root, vector<int> &Res)
+    {
+
+        if(!isLeaf(Root)){
+            Res.push_back(Root->data);
+            return;
+        }
+        if(Root->left)
+            addLeaf(Node* Root->left, vector<int> &Res)
+        else
+            addLeaf(Node* Root->right, vector<int> &Res)
+        }
+    }
+
+    vector<int> printBoundary(Node* Root)
+    {
+        vector<int> Res;
+        if(!Root)
+            return Res;
+        if(!isLeaf(Root))
+            Res.push_back(Root->data);
+        addLeft(Root, Res);
+        addLeaf(Root, Res);
+        addRight(Root, Res);
+        return Res;
+    }
+
+    Time Complextiy : O(N) 
+    Auxillary space : O(N)
+
+    
