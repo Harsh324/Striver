@@ -1,0 +1,41 @@
+** Vertical order of traversal of Binary Tree
+
+    ** Idea is to represent each node on a cartesian plane like stuff.
+        so each node assigned coordinates, with root being given (0, 0),
+        immediate left (-1, 1), immediate right(1, 1) and so on.
+
+    ** Thus do simple traversal either BFS or DFS and perform operations.
+
+
+    vector<vector<int>> VerticalTraversal(Node* Root)
+    {
+        map<int, map<int, multiset<int, int>>> nodes;
+        queue<pair<Node*, pair<int, int>>> todo;
+        todo.push({Root, {0,0}});
+
+        while(!todo.empty())
+        {
+            auto p = todo.front();
+            todo.pop();
+            Node* node = p.first;
+            int x = p.second.first, y = p.second.second;
+
+            nodes[x][y].insert(node->val);
+            if(node->left)
+                todo.push({node->left, {x - 1, y + 1}});
+            if(node->right)
+                todo.push({node->right, {x + 1, y + 1}});
+        }
+
+        vector<vector<int>> Ans;
+        for(auto p : nodes)
+        {
+            vector<int> col;
+            for(auto q : p.second)
+                col.insert(col.end(), q.second.begin(), q.seocnd.end());
+            Ans.push_back(col);
+        }
+        return Ans;
+    }
+
+
