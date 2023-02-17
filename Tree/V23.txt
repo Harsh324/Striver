@@ -1,0 +1,42 @@
+** Top view of Binary Tree
+
+    ** So level order traversal is followed here.
+    
+    ** Some hint can be taken from the vertical order traversal of tree,
+       first element of every line is what we need.
+
+    ** Recursive strategy will not work directly here, need to add extra logic.
+
+    
+    vector<int> topView(Node* Root)
+    {
+        vector<int> Ans;
+        if(Root == NULL)
+            return Ans;
+        map<int, int> Map;
+        queue<pair<Node*, int>> q;
+        q.push(Root, 0);
+
+        while(!q.empty())
+        {
+            auto It = q.front();
+            q.pop();
+            Node* node = It.first;
+            int Line = It.second;
+            if(Map.find(Line) == Map.end())
+                Map[Line] = node->data;
+
+            if(node->left != NULL)
+                q.push({node->left, Line - 1});
+
+            if(node->right != NULL)
+                q.push({node->right, Line + 1});
+        }
+
+        for(auto It : Map)
+            Ans.push_back(It.second);
+        return Ans;
+    }
+
+    Time Complextiy : O(N)
+    Auxillary space : O(N)
