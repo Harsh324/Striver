@@ -1,0 +1,26 @@
+## Print Root to Node path in Binary Tree
+
+    ** We will be using the Inorder traversal for solving
+      the problem, as this will be less complex than other 
+      dfs traversals
+
+    bool getPath(node * root, vector < int > & arr, int x)
+    {
+        if (!root)
+            return false;
+        arr.push_back(root -> data);
+
+        if (root -> data == x)
+            return true;
+
+        if (getPath(root -> left, arr, x) ||
+            getPath(root -> right, arr, x))
+            return true;
+
+        arr.pop_back();
+        return false;
+    }
+
+
+    Time Complexity : O(N)
+    Auxillary space : O(N)
