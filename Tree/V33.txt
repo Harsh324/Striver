@@ -1,0 +1,37 @@
+## Count total Nodes in a COMPLETE Binary Tree 
+
+
+    ** 
+
+    int countNodes(TreeNode* root) {
+        if(NULL == root)
+            return 0;
+        
+        int lh = Height(root, "left");
+        int rh = Height(root, "right");
+
+        if(rh == lh)
+            return (1 << lh) - 1;
+        
+        return 1 + countNodes(root->left) + countNodes(root->right);
+
+    }
+
+    int Height(TreeNode* node, string Str)
+    {
+        int res = 0;
+
+        while(node)
+        {
+            res++;
+            if(Str == "left")
+                node = node->left;
+            else
+                node = node->right;
+
+        }
+        return res;
+    }
+
+    Time Complexity : O((logN)^2)
+    Auxillary space : O(N)
