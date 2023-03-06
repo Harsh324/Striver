@@ -1,0 +1,46 @@
+## Maximum Width of a Binary Tree
+
+    ** The maximum width of a binary tree is the maximum of all the level widths.
+       Width for a level is defined as the maximum number of nodes between the leftmost,
+       and rightmost node of the level(including the end nodes and the null nodes between the end nodes). 
+
+
+    int widthOfBinaryTree(TreeNode* root) {
+
+        if(NULL == root)
+            return 0;
+        
+        int Res = 0;
+
+        queue<pair<TreeNode*, int>> Q;
+        Q.push({root, 0});
+
+        while(Q.empty() != true)
+        {
+            int Sz = Q.size(), Minn = Q.front().second, first, last;
+            for(int i = 0; i < Sz; i++)
+            {
+                int Curr = Q.front().second - Minn;
+                TreeNode* Node = Q.front().first;
+                Q.pop();
+
+                if(i == 0)
+                    first = Curr;
+                if(i == (Sz - 1))
+                    last = Curr;
+                
+                if(Node->left)
+                    Q.push({Node->left, (long long)Curr * 2 + 1});
+                
+                if(Node->right)
+                    Q.push({Node->right, (long long)Curr * 2 + 2});
+            }
+            Res = max(Res, last - first + 1);
+
+        }
+        return Res;
+        
+    }
+
+    Time Complexity : O(N)
+    Auxillary space : O(N);
