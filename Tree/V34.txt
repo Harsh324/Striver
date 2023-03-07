@@ -1,0 +1,8 @@
+##  Requirements needed to construct a Unique Binary Tree
+
+
+    ** If Given an preorder and postorder traversal, we cannot create an unique binary tree.
+    ** Yet we can create a bianry tree but it may or may not be unique.
+    ** It is very very important to get to konw what is on the left and what is on the right of the root
+        to generate the unique binary tree, thus Inorder traversal is neccasory to get unique Binary tree
+        along wiht one other traversal
