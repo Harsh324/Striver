@@ -1,0 +1,34 @@
+## Construct a Binary Tree from Preorder and Inorder Traversal
+
+    ** Given the Inorder and Preorder Traversal of a binary tree, we need to construct the unique binary
+       tree represented by them
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        map<int, int> Map;
+        for(int i = 0; i < inorder.size(); i++)
+            Map[inorder[i]] = i;
+
+        return buildTree1(preorder, 0, preorder.size() - 1, inorder, 0, inorder.size() - 1, Map);
+        
+    }
+
+
+    TreeNode* buildTree1(vector<int>& preorder, int preStart, int preEnd, vector<int> & inorder, int inStart, int inEnd, map<int, int> Map)
+    {
+        if(preStart > preEnd || inStart > inEnd)
+            return NULL;
+
+        TreeNode* Res = new TreeNode(preorder[preStart]);
+
+        int inRes = Map[Res->val];
+        int Left = inRes - inStart;
+
+        Res->left = buildTree1(preorder, preStart + 1, preStart + Left, inorder, inStart, inRes - 1, Map);
+
+        Res->right = buildTree1(preorder, preStart + Left + 1, preEnd, inorder, inRes + 1, inEnd, Map);
+
+        return Res;
+    }
+
+    Time Complexity : O(N)
+    Auxillary space : O(N)
