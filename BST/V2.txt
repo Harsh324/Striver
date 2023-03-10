@@ -1,0 +1,13 @@
+## Search in a Binary Search Tree
+
+    ** 
+
+    TreeNode* searchBST(TreeNode* root, int val) {
+         while(root != NULL && root->val != val){
+            root = val<root->val? root->left:root->right;
+        }
+        return root;
+    }
+
+    Time Complexity : O(log2(N))
+    Auxillary space : O(1)

@@ -1,0 +1,7 @@
+## Introduction to Binary Search Tree
+
+
+    ** Left < Root << Right is followed, 
+    ** Also there is no scenario of duplicate usually but can be manageg with some minor changes
+
+    
