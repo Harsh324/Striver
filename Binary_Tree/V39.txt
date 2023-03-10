@@ -1,0 +1,89 @@
+## Flatten a Binary Tree to Linked List
+
+    ** The sequence of nodes in the linked list should be the same as that of the preorder traversal
+       of the binary tree.
+    ** The linked list nodes are the same binary tree nodes. You are not allowed to create extra nodes.
+    ** The right child of a node points to the next node of the linked list whereas the left child points to NULL.
+
+
+
+    class Solution 
+    {
+        node * prev = NULL;
+        public:
+            void flatten(node * root) {
+            if (root == NULL) return;
+
+            flatten(root -> right);
+            flatten(root -> left);
+
+            root -> right = prev;
+            root -> left = NULL;
+            prev = root;
+            }
+
+    };
+
+    Time Complexity : O(N)
+    Auxillary space : O(N)
+
+    ** Approach 2
+
+    class Solution 
+    {
+        node * prev = NULL;
+        public:
+        void flatten(node * root) 
+        {
+            if (root == NULL) return;
+            stack < node * > st;
+            st.push(root);
+            while (!st.empty()) 
+            {
+                node * cur = st.top();
+                st.pop();
+
+                if (cur -> right != NULL) 
+                {
+                st.push(cur -> right);
+                }
+                if (cur -> left != NULL) {
+                st.push(cur -> left);
+                }
+                if (!st.empty()) {
+                cur -> right = st.top();
+                }
+                cur -> left = NULL;
+            }
+        }
+    };
+
+    Time Complexity : O(N)
+    Auxillary space : O(N)
+
+    ** Approach 3
+
+    class Solution 
+    {
+        node * prev = NULL;
+        public:
+        void flatten(node* root) 
+        {
+            node* cur = root;
+            while (cur)
+            {
+                if(cur->left)
+                {
+                    node* pre = cur->left;
+                    while(pre->right)
+                    {
+                        pre = pre->right;
+                    }
+                    pre->right = cur->right;
+                    cur->right = cur->left;
+                    cur->left = NULL;
+                }
+                cur = cur->right;
+            }
+        }
+    };
